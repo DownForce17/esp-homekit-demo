@@ -96,10 +96,10 @@ void display_temperature_task(void *_args) {
         snprintf(str, sizeof(str), "%.1f", temperature);
         ssd1306_fill_rectangle(&display, display_buffer, 0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT, OLED_COLOR_BLACK);
         ssd1306_draw_string(&display, display_buffer, font_builtin_fonts[DEFAULT_FONT], 0, 0, "Temperatur", OLED_COLOR_WHITE, OLED_COLOR_BLACK);
-        ssd1306_draw_string(&display, display_buffer, font_builtin_fonts[DEFAULT_FONT], 64, 0, "Luftfeuchte", OLED_COLOR_WHITE, OLED_COLOR_BLACK);
+        ssd1306_draw_string(&display, display_buffer, font_builtin_fonts[DEFAULT_FONT], 64, 0, "Feuchte", OLED_COLOR_WHITE, OLED_COLOR_BLACK);
 
-        ssd1306_draw_string(&display, display_buffer, font_builtin_fonts[DEFAULT_FONT1], 0, 15, str, OLED_COLOR_WHITE, OLED_COLOR_BLACK);
-        //ssd1306_draw_string(&display, display_buffer, font_builtin_fonts[DEFAULT_FONT2], 50, 0, "°", OLED_COLOR_WHITE, OLED_COLOR_BLACK);
+        //ssd1306_draw_string(&display, display_buffer, font_builtin_fonts[DEFAULT_FONT1], 0, 15, str, OLED_COLOR_WHITE, OLED_COLOR_BLACK);
+        ssd1306_draw_string(&display, display_buffer, font_builtin_fonts[DEFAULT_FONT2], 50, 0, "°", OLED_COLOR_WHITE, OLED_COLOR_BLACK);
     
         // Display humidity
         snprintf(str, sizeof(str), "%.1f %%", humidity);
@@ -107,12 +107,12 @@ void display_temperature_task(void *_args) {
     
         // Display target temp    
         if (heater_power){
-            snprintf(str, sizeof(str), "Target: %.1f", target_temperature.value.float_value);
+            snprintf(str, sizeof(str), "Soll: %.1f", target_temperature.value.float_value);
             ssd1306_draw_string(&display, display_buffer, font_builtin_fonts[DEFAULT_FONT], 0, 40, str, OLED_COLOR_WHITE, OLED_COLOR_BLACK);
             ssd1306_draw_string(&display, display_buffer, font_builtin_fonts[DEFAULT_FONT], 80, 40, "C", OLED_COLOR_WHITE, OLED_COLOR_BLACK);
             //ssd1306_draw_string(&display, display_buffer, font_builtin_fonts[DEFAULT_FONT], 78, 40, "°", OLED_COLOR_WHITE, OLED_COLOR_BLACK);
         } else {
-            snprintf(str, sizeof(str), "POWER OFF");
+            snprintf(str, sizeof(str), "Heizung aus");
             ssd1306_draw_string(&display, display_buffer, font_builtin_fonts[DEFAULT_FONT1], 0, 40, str, OLED_COLOR_WHITE, OLED_COLOR_BLACK);
         }
 
@@ -243,7 +243,7 @@ homekit_accessory_t *accessories[] = {
 
 homekit_server_config_t config = {
     .accessories = accessories,
-    .password = "111-11-111"
+    .password = "111-22-444"
 };
 static bool homekit_initialized = false;
 
