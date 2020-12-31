@@ -40,7 +40,7 @@ homekit_characteristic_t current_temperature = HOMEKIT_CHARACTERISTIC_(
     CURRENT_TEMPERATURE, 0
 );
 homekit_characteristic_t target_temperature  = HOMEKIT_CHARACTERISTIC_(
-    TARGET_TEMPERATURE, 22, .callback=HOMEKIT_CHARACTERISTIC_CALLBACK(on_update)
+    TARGET_TEMPERATURE, 20, .callback=HOMEKIT_CHARACTERISTIC_CALLBACK(on_update)
 );
 homekit_characteristic_t units = HOMEKIT_CHARACTERISTIC_(TEMPERATURE_DISPLAY_UNITS, 0);
 homekit_characteristic_t current_state = HOMEKIT_CHARACTERISTIC_(CURRENT_HEATING_COOLING_STATE, 1);
@@ -48,10 +48,10 @@ homekit_characteristic_t target_state = HOMEKIT_CHARACTERISTIC_(
     TARGET_HEATING_COOLING_STATE, 1, .valid_values = {.count = 2, .values = (uint8_t[]) { 0, 1}}, .callback=HOMEKIT_CHARACTERISTIC_CALLBACK(on_update)
 );
 homekit_characteristic_t cooling_threshold = HOMEKIT_CHARACTERISTIC_(
-    COOLING_THRESHOLD_TEMPERATURE, 25, .callback=HOMEKIT_CHARACTERISTIC_CALLBACK(on_update)
+    COOLING_THRESHOLD_TEMPERATURE, 23, .callback=HOMEKIT_CHARACTERISTIC_CALLBACK(on_update)
 );
 homekit_characteristic_t heating_threshold = HOMEKIT_CHARACTERISTIC_(
-    HEATING_THRESHOLD_TEMPERATURE, 15, .callback=HOMEKIT_CHARACTERISTIC_CALLBACK(on_update)
+    HEATING_THRESHOLD_TEMPERATURE, 17, .callback=HOMEKIT_CHARACTERISTIC_CALLBACK(on_update)
 );
 homekit_characteristic_t current_humidity = HOMEKIT_CHARACTERISTIC_(CURRENT_RELATIVE_HUMIDITY, 0);
 
@@ -98,8 +98,8 @@ void display_temperature_task(void *_args) {
         ssd1306_draw_string(&display, display_buffer, font_builtin_fonts[DEFAULT_FONT], 0, 0, "Temperatur", OLED_COLOR_WHITE, OLED_COLOR_BLACK);
         ssd1306_draw_string(&display, display_buffer, font_builtin_fonts[DEFAULT_FONT], 64, 0, "Feuchte", OLED_COLOR_WHITE, OLED_COLOR_BLACK);
 
-        //ssd1306_draw_string(&display, display_buffer, font_builtin_fonts[DEFAULT_FONT1], 0, 15, str, OLED_COLOR_WHITE, OLED_COLOR_BLACK);
-        ssd1306_draw_string(&display, display_buffer, font_builtin_fonts[DEFAULT_FONT2], 50, 0, "°", OLED_COLOR_WHITE, OLED_COLOR_BLACK);
+        ssd1306_draw_string(&display, display_buffer, font_builtin_fonts[DEFAULT_FONT1], 0, 15, str, OLED_COLOR_WHITE, OLED_COLOR_BLACK);
+        //ssd1306_draw_string(&display, display_buffer, font_builtin_fonts[DEFAULT_FONT2], 50, 0, "°", OLED_COLOR_WHITE, OLED_COLOR_BLACK);
     
         // Display humidity
         snprintf(str, sizeof(str), "%.1f %%", humidity);
@@ -243,7 +243,7 @@ homekit_accessory_t *accessories[] = {
 
 homekit_server_config_t config = {
     .accessories = accessories,
-    .password = "111-22-444"
+    .password = "111-11-111"
 };
 static bool homekit_initialized = false;
 
